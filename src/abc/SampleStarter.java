@@ -14,12 +14,13 @@ public class SampleStarter {
 	 * @throws RecognitionException
 	 */
 	public static void main (String[] args) throws Exception {
-		CharStream input = new ANTLRStringStream("a {ba} a");
+		CharStream input = new ANTLRStringStream("a {b} c {d} e {1}{2}");
 		SampleLexer lexer = new SampleLexer(input);
 		TokenStream stream = new CommonTokenStream(lexer);
 		SampleParser parser = new SampleParser(stream);
+		parser.register("");
 		String result = parser.rule();
-		result = result.replaceAll("null", ""); // warum null überall?
+		//result = result.replaceAll("null", ""); // warum null überall?
 
 		System.out.println("result = '" + result + "'");
 
